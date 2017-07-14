@@ -1,3 +1,55 @@
-<p>
-  dashboard works!
-</p>
+<div>
+    <h3 class="text-center" style="margin-top: 30px">Todo List</h3>
+    <ul class="" style="margin-top: 30px">
+        <li *ngFor='let item of items;'
+            class="list-unstyled">
+            <div class="row">
+                <div class="col-md-6 h4">{{ item.title }}</div>
+                <div class="col-md-3">{{ item.status }}</div>
+                <div class="col-md-3 text-right">
+                    <button class="btn-link" (click)="editItem(item)">edit</button>
+                    <button class="btn-link" (click)="deleteItem(item)">delete</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="text-right" *ngIf="isViewMode">
+        <button class="btn btn-primary" (click)="toggleMode()">Add New Item</button>
+    </div>
+
+</div>
+
+<div *ngIf="!isViewMode" class="row justify-content-center">
+    <form name="itemForm" class="col-md-6">
+        <div class="form-group row">
+            <label class="col-3 col-form-label">Text</label>
+            <div class="col-9">
+                <input class="form-control"
+                       [(ngModel)]="newItem.title"
+                       name="title"
+                       type="text">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-3 col-form-label">Status</label>
+            <div class="col-9">
+                <input class="form-control"
+                       [(ngModel)]="newItem.status"
+                       name="status"
+                       type="text">
+            </div>
+        </div>
+        <div class="text-right">
+            <button class="btn btn-primary"
+                    (click)="addItem()">
+                Save Item
+            </button>
+            <button class="btn btn-default"
+                    (click)="toggleMode()">
+                Cancel
+            </button>
+        </div>
+    </form>
+</div>
