@@ -3,23 +3,28 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
+import {SelectModule} from 'ng2-select';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './modules/dashboard/ui/dashboard.component';
 
-import { ItemService } from './resources/item/item-service.service'
+import { ItemService } from './resources/item/item-service.service';
+import { CustomSelectComponent } from './core/utils/custom-select/custom-select.component'
 
 @NgModule({
     declarations: [
         AppComponent,
-        DashboardComponent
+        DashboardComponent,
+        CustomSelectComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         AppRoutingModule,
         HttpModule,
-        JsonpModule
+        JsonpModule,
+        SelectModule,
     ],
     providers: [ItemService],
     bootstrap: [AppComponent]

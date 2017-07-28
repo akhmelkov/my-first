@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { Item } from '../entities/item/item'
-import { ItemService } from '../resources/item/item-service.service'
+import { Item } from '../../../entities/item/item'
+import { ItemService } from '../../../resources/item/item-service.service'
 
 @Component({
     selector: 'app-dashboard',
@@ -13,11 +13,18 @@ export class DashboardComponent implements OnInit {
     newItem: Item;
     isViewMode: boolean;
     errorMessage: string;
+    public statuses:Array<any>;
 
     constructor(private itemService: ItemService) {
         this.isViewMode = true;
         this.newItem = new Item();
         this.items = [];
+        this.statuses = [
+            { id: 1, text: 'New'},
+            { id: 2, text: 'In Progress'},
+            { id: 3, text: 'Ready to QA'},
+            { id: 4, text: 'Completed'}
+        ];
     }
 
     ngOnInit() {
@@ -75,5 +82,21 @@ export class DashboardComponent implements OnInit {
 
     toggleMode() {
         this.isViewMode = !this.isViewMode;
+    }
+
+    public selected(value:any):void {
+        console.log('Selected value is: ', value);
+    }
+
+    public removed(value:any):void {
+        console.log('Removed value is: ', value);
+    }
+
+    public typed(value:any):void {
+        console.log('New search input: ', value);
+    }
+
+    public refreshValue(value:any):void {
+        this.newItem.status = value.text;
     }
 }
